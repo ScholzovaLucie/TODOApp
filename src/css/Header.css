@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar {
+    @apply flex items-center justify-center flex-col w-full h-[10%] bg-[color:var(--dark-blue)];
+  }
+  .logo {
+    @apply text-[color:var(--dark-blue)];
+  }

@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-yellow text-center content-center flex flex-col items-center text-base;
+
+}
+
+
+
+.App-header {
+ 
+}
+
+
