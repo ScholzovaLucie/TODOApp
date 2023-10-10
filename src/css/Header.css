@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.navbar {
-    @apply flex items-center justify-center flex-col w-full h-[10%] bg-[color:var(--dark-blue)];
+.Navbar {
+    @apply flex items-center justify-center gap-4 flex-row w-[100%] h-[10%] bg-[color:var(--dark-blue)];
+  }
+
+  .Navbar button{
+    @apply uppercase font-fantasy text-dark-red;
   }
   .logo {
     @apply text-[color:var(--dark-blue)];

@@ -2,15 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-yellow text-center content-center flex flex-col items-center text-base;
+body{
+  @apply bg-yellow text-center content-center flex flex-col items-center text-base w-[100%] h-[100%];
+}
+
+#root {
+  @apply text-center content-center flex flex-col items-center text-base w-[100%] h-[100%];
 
 }
 
 
 
-.App-header {
- 
+.App-header, .App {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+ @apply w-[100%] h-[100%]; 
+
+}
+
+
+.App-main{
+  position: absolute;
+  top: 30%;
+  height: 70%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zalozkaBlock{
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  gap: 20px;
 }
 
 

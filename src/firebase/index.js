@@ -1,6 +1,5 @@
-import { getDatabase, ref, onValue, child, get, set } from "firebase/database";
+import { getDatabase, ref, onValue, child, push, set } from "firebase/database";
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBauwmSkn3ELPHV0K1XziJ4dW5NSR6JJlY",
@@ -39,3 +38,22 @@ export function GetZalozky(username, setData) {
     setData(snapshot.val());
   });
 }
+
+export function GetZalozka(username, zalozka, setData) {
+    const db = getDatabase();
+    const stateRef = ref(db, "/" + username.data + "/zalozky/" + zalozka);
+    onValue(stateRef, (snapshot) => {
+      setData(snapshot.val());
+    });
+  }
+
+  export function AddTodo(username, zalozka, poznamka){
+    const db = getDatabase();
+    const postData = {
+      poznamka: poznamka,
+    };
+
+    const newPostKey = push(child(ref(db, '/' + username+ "/zalozky/" + zalozka), 'posts')).key;
+
+  }
+
