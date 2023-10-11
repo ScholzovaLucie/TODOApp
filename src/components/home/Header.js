@@ -1,12 +1,14 @@
 import '../../css/Header.css';
 import React from 'react';
-import showTODOList from '../../App';
-
-
+import './../../App.css';
 
 function Header(zalozky) {
     const showTODOList = (event) =>{
         const todolist = document.getElementsByClassName("zalozkaBlock");
+        Array.from(document.getElementsByClassName('active')).forEach(button => {
+          button.classList.remove('active');
+        });
+        event.target.classList.add('active');
         for(let i = 0; i < todolist.length; i++) {
             if(todolist[i].id === event.target.id){
                 todolist[i].setAttribute('style', 'display: flex;');

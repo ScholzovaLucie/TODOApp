@@ -1,0 +1,32 @@
+
+.App-main{
+    position: absolute;
+    top: 20%;
+    height: 70%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .zalozkaBlock{
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 100%;
+    width: 95%;
+    border-radius: 15px;
+    @apply bg-dark-red;
+  }
+
+  .pridejPoznamku {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }

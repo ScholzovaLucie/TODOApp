@@ -1,9 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 body{
-  @apply bg-yellow text-center content-center flex flex-col items-center text-base w-[100%] h-[100%];
+  @apply bg-light text-light text-center content-center flex flex-col items-center text-base w-[100%] h-[100%];
 }
 
 #root {
@@ -11,7 +8,29 @@ body{
 
 }
 
+button {
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  @apply uppercase font-fantasy text-light  bg-dark-blue;
+}
 
+button:hover{
+  box-shadow: 0px 0px 10px 1px white;
+  @apply text-dark-blue bg-yellow;
+}
+
+.active {
+  @apply bg-dark-red;
+}
+
+textarea {
+  border: none;
+  width: 100%;
+  height: 60%;
+  border-radius: 15px;
+  @apply text-light bg-dark-blue;
+}
 
 .App-header, .App {
 display: flex;
@@ -21,23 +40,3 @@ flex-direction: column;
  @apply w-[100%] h-[100%]; 
 
 }
-
-
-.App-main{
-  position: absolute;
-  top: 30%;
-  height: 70%;
-  width: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.zalozkaBlock{
-  position: absolute;
-  display: none;
-  flex-direction: column;
-  gap: 20px;
-}
-
-

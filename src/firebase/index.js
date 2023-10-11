@@ -1,4 +1,4 @@
-import { getDatabase, ref, onValue, child, push, set } from "firebase/database";
+import { getDatabase, ref, onValue, child, push, set, update } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -14,6 +14,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+
 
 export function LoginUser(username, setData) {
     const db = getDatabase();
@@ -49,11 +51,14 @@ export function GetZalozka(username, zalozka, setData) {
 
   export function AddTodo(username, zalozka, poznamka){
     const db = getDatabase();
+   
     const postData = {
-      poznamka: poznamka,
+      id: poznamka,
     };
 
-    const newPostKey = push(child(ref(db, '/' + username+ "/zalozky/" + zalozka), 'posts')).key;
-
+    const updates = {};
+    updates['/' + username + "/zalozky/" + zalozka + "/" ] = postData;
+    return update(ref(db), updates);
+  
   }
 

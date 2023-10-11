@@ -1,4 +1,5 @@
 import "./App.css";
+import "./css/Main.css"
 import "./components/home/Header";
 import Header from "./components/home/Header";
 import React, { useEffect, useState } from "react";
@@ -10,8 +11,11 @@ function App() {
   const [zalozky, setZalozky] = useState(null);
 
   const addtodo = (event) =>{
-    console.log(event.target.className)
-    AddTodo(username, event.target.className, 'poznámka');
+    let textarea = document.getElementsByClassName('textarea ' + event.target.className)[0].value;
+    if(textarea){
+      AddTodo(username, event.target.className, textarea);
+    }
+    
 }
 
   useEffect(() => {
@@ -37,10 +41,13 @@ function App() {
         <main className="App-main">
           {Object.keys(zalozky).map((key, index) => (
             <div className="zalozkaBlock" id={key}>
-                {zalozky[key].map((key, index) => (
+                {Array(zalozky[key]).map((key, index) => (
                   <div key={index}>{key}</div>
                 ))}
-                <button className={key} onClick={addtodo}>Add</button>
+                <div className="pridejPoznamku">
+                  <textarea className={'textarea ' + key}></textarea>
+                  <button className={key} onClick={addtodo}>Přidej</button>
+                </div>
               </div>
           ))}
         </main>
