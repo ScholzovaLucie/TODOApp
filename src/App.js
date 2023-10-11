@@ -36,13 +36,17 @@ function App() {
     zalozky && (
       <div className="App">
         <header className="App-header">
-          <Header zalozky={zalozky} />
+          <Header zalozky={zalozky} username={username} />
         </header>
         <main className="App-main">
-          {Object.keys(zalozky).map((key, index) => (
-            <div className="zalozkaBlock" id={key}>
-                {Array(zalozky[key]).map((key, index) => (
-                  <div key={index}>{key}</div>
+          {Object.keys(zalozky).map((key) => (
+            <div className="zalozkaBlock" id={key}>                
+                {Object.values(zalozky[key]).map((key) => (
+                  <>
+                  {key !== 'value' &&
+                  <div className={key}>{key}</div>
+                  }
+                  </>
                 ))}
                 <div className="pridejPoznamku">
                   <textarea className={'textarea ' + key}></textarea>

@@ -15,8 +15,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-
-
 export function LoginUser(username, setData) {
     const db = getDatabase();
     const stateRef = ref(db, "/" + username);
@@ -50,15 +48,34 @@ export function GetZalozka(username, zalozka, setData) {
   }
 
   export function AddTodo(username, zalozka, poznamka){
+      const db = getDatabase();
+  
+    // Get a key for a new Post.
+    let id = 0;
+
+    const stateRef = ref(db, "/" + username + "/zalozky/" + zalozka);
+    onValue(stateRef, (snapshot) => {
+      id = Object.keys(snapshot.val()).length;
+    });
+  
+    // Write the new post's data simultaneously in the posts list and the user's post list.
+    const updates = {};
+    updates['/' + username + "/zalozky/" + zalozka + "/" + id] = poznamka;
+  
+    return update(ref(db), updates);
+  }
+
+  export function AddZalozka(username, zalozka){
     const db = getDatabase();
-   
-    const postData = {
-      id: poznamka,
-    };
+
+    const firstData = {
+      key: 'value'
+    }
 
     const updates = {};
-    updates['/' + username + "/zalozky/" + zalozka + "/" ] = postData;
-    return update(ref(db), updates);
+    updates['/' + username + "/zalozky/"  + zalozka] = firstData;
   
+    return update(ref(db), updates);
+   
   }
 
