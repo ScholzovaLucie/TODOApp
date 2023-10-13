@@ -13,7 +13,6 @@
     position: absolute;
     display: none;
     flex-direction: column;
-    display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
@@ -29,4 +28,11 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+  }
+
+  .todoBlok{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
   }

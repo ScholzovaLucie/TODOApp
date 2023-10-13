@@ -1,4 +1,4 @@
-import { getDatabase, ref, onValue, child, push, set, update } from "firebase/database";
+import { getDatabase, ref, onValue, remove, set, update, doc } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
@@ -77,5 +77,31 @@ export function GetZalozka(username, zalozka, setData) {
   
     return update(ref(db), updates);
    
+  }
+
+
+  export function DeleteTODO(username, zalozka, data){
+    const db = getDatabase();
+    let id = GetTODOID(username, zalozka, data);
+    let todoRef = ref(db, "/" + username + "/zalozky/" + zalozka + "/" + id);
+    remove(todoRef);
+  }
+
+
+  function GetTODOID(username, zalozka, data){
+    const db = getDatabase();
+    const stateRef = ref(db, "/" + username + "/zalozky/" + zalozka + "/");
+    onValue(stateRef, (snapshot) => {
+      Object.entries(snapshot.val()).forEach(value => {
+          //if (data in value){
+            if(value[1] == data){
+              return value[10];
+            }
+            
+          //}
+      })
+      //return Object.keys(snapshot.val());
+    });
+  
   }
 

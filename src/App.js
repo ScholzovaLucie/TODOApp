@@ -3,7 +3,9 @@ import "./css/Main.css"
 import "./components/home/Header";
 import Header from "./components/home/Header";
 import React, { useEffect, useState } from "react";
-import { GetZalozky, LoginUser, AddTodo } from "./firebase/index";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAdd, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { GetZalozky, LoginUser, AddTodo, DeleteTODO } from "./firebase/index";
 
 function App() {
   const username = "User1";
@@ -16,6 +18,10 @@ function App() {
       AddTodo(username, event.target.className, textarea);
     }
     
+}
+
+const removeTODO = (event) =>{
+  DeleteTODO(username, event.target.classList[1], event.target.id);
 }
 
   useEffect(() => {
@@ -41,16 +47,20 @@ function App() {
         <main className="App-main">
           {Object.keys(zalozky).map((key) => (
             <div className="zalozkaBlock" id={key}>                
-                {Object.values(zalozky[key]).map((key) => (
+                {Object.values(zalozky[key]).map((zalozka) => (
                   <>
-                  {key !== 'value' &&
-                  <div className={key}>{key}</div>
+                  {zalozka !== 'value' &&
+                  <div className={"todoBlok " + key} id={zalozka}>
+                    <div className={zalozka}>{zalozka}</div>
+                    <button onClick={removeTODO}className={"btnOdeberTODO " + key} id={zalozka}><FontAwesomeIcon icon={faTrash} /></button>
+                  </div>
+                  
                   }
                   </>
                 ))}
                 <div className="pridejPoznamku">
                   <textarea className={'textarea ' + key}></textarea>
-                  <button className={key} onClick={addtodo}>Přidej</button>
+                  <button className={key} onClick={addtodo}><FontAwesomeIcon icon={faAdd} /></button>
                 </div>
               </div>
           ))}
